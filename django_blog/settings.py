@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-ve^mzz2fvnszz6k51hdklnn7sfzv8do=+%a@jincy=ik1l=_qb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = ["satsforgood-render.onrender.com", "127.0.0.1", "localhost"]
 
 
 
