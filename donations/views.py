@@ -13,7 +13,7 @@ LNBits_API_KEY = os.getenv("LNBITS_API_KEY")
 LNBits_BASE_URL = os.getenv("LNBITS_BASE_URL", "https://demo.lnbits.com")
 
 
-# ✅ CREATE DONATION + INVOICE (PENDING)
+# CREATE DONATION + INVOICE (PENDING)
 @api_view(['POST'])
 def create_invoice(request):
     amount = int(request.data.get('amount_sats'))
@@ -51,7 +51,7 @@ def create_invoice(request):
     })
 
 
-# ✅ CHECK PAYMENT STATUS (AUTO UPDATES TO PAID)
+#  CHECK PAYMENT STATUS (AUTO UPDATES TO PAID)
 @api_view(['GET'])
 def invoice_status(request, payment_hash):
     headers = {"X-Api-Key": LNBits_API_KEY}
@@ -75,7 +75,7 @@ def invoice_status(request, payment_hash):
     })
 
 
-# ✅ SHOW BOTH PAID + PENDING (FOR UI TABLE)
+# SHOW BOTH PAID + PENDING (FOR UI TABLE)
 @api_view(['GET'])
 def recent_donations(request):
     donations = Donation.objects.all().order_by('-created_at')[:15]
@@ -83,7 +83,7 @@ def recent_donations(request):
     return Response(serializer.data)
 
 
-# ✅ STATS SHOULD COUNT ONLY PAID DONATIONS
+# STATS SHOULD COUNT ONLY PAID DONATIONS
 def donation_stats(request):
     total_sats = Donation.objects.filter(status="PAID").aggregate(
         total=models.Sum("amount_sats")
